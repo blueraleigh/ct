@@ -873,12 +873,16 @@ SEXP C_ct_unserialize(SEXP s)
 
 #define CALLDEF(name, n)  {#name, (DL_FUNC) &name, n}
 
-SEXP C_ct_fit(SEXP, SEXP, SEXP, SEXP);
-SEXP C_ct_predict(SEXP, SEXP);
-SEXP C_ct_print(SEXP);
-SEXP C_ct_serialize(SEXP);
-SEXP C_ct_unserialize(SEXP);
 
+static const R_CallMethodDef CallEntries[] = {
+    CALLDEF(C_ct_fit, 4),
+    CALLDEF(C_ct_predict, 2),
+    CALLDEF(C_ct_print, 1),
+    CALLDEF(C_ct_serialize, 1),
+    CALLDEF(C_ct_unserialize, 1),
+
+    {NULL, NULL, 0}
+};
 
 void attribute_visible R_init_ct(DllInfo *info)
 {
